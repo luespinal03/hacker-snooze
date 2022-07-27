@@ -27,7 +27,6 @@ top100list()
 // console.log(id);
 
 
-
 //  This function gets us the top 100 lists ID's
 let top100Id = async () => {
 
@@ -37,7 +36,7 @@ let top100Id = async () => {
 
         let response = await request.json();
 
-       let parentTitle = document.createElement('div');
+        let parentTitle = document.createElement('div');
         child = document.createElement('div');
         anchorTag = document.createElement('a');
         storiesList.appendChild(parentTitle);
