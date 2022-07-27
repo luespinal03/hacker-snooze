@@ -1,3 +1,7 @@
-app {
-    background-color: ff006e;
+body {
+    background-color: antiquewhite;;
+}
+
+.container-fluid {
+    background-color: white;
 }
