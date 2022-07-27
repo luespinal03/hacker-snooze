@@ -1,7 +1,23 @@
 body {
-    background-color: antiquewhite;;
+    background-color: #ffd166;
 }
 
 .container-fluid {
     background-color: white;
+}
+
+#story {
+    background-color: #70d6ff ;
+}
+
+#ask {
+    background-color: #ff206e;
+}
+
+#parentDiv {
+    background-color: #cfbaf0;
+}
+
+#askingParentDiv {
+    background-color: #b2ff9e;
 }
