@@ -37,6 +37,7 @@ let top100Id = async () => {
         let response = await request.json();
 
         let parentTitle = document.createElement('div');
+        parentTitle.setAttribute('id', 'parentDiv');
         child = document.createElement('div');
         anchorTag = document.createElement('a');
         storiesList.appendChild(parentTitle);
@@ -73,6 +74,7 @@ let askingLinks = async () => {
         // console.log(response)
 
         let parentTitle = document.createElement('div');
+        parentTitle.setAttribute('id', 'askingParentDiv');
         child = document.createElement('div');
         anchorTag = document.createElement('a');
         storiesList.appendChild(parentTitle);
