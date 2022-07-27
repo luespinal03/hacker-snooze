@@ -1,12 +1,9 @@
 // apiCall();
 let body = document.querySelector('body');
-
 let askSection = document.querySelector('#ask');
-
 let storiesList = document.querySelector('#story');
 let child = document.createElement('div');
 let anchorTag = document.createElement('a');
-
 let id = [];
 let otherStories = []
 let askStoriesGenLink = 'https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty'
@@ -55,18 +52,16 @@ let top100Id = async () => {
 let askLinks = async () => {
     let res = await fetch(askStoriesGenLink)
     let data = await res.json()
-
     otherStories = data;
     // console.log(otherStories)
 }
 
 
-
 let askingLinks = async () => {
     console.log('this')
+    storiesList.innerHTML = ''
+    child.innerHtml = ''
 
-     storiesList.innerHTML = ''
-     child.innerHtml = ''
     for (let idNumber of otherStories) {
         let request = await fetch(`https://hacker-news.firebaseio.com/v0/item/${idNumber}.json?print=pretty`)
 
@@ -89,9 +84,8 @@ let askingLinks = async () => {
 
 }
 
+// EVENT LISTENER FOR 'ASK STORIES' BUTTON ON TOP OF THE PAGE
 askSection.addEventListener('click', async () => {
-
     await askLinks()
     await askingLinks();
-
 })
