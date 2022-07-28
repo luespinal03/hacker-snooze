@@ -6,8 +6,8 @@ let child = document.createElement('div');
 let anchorTag = document.createElement('a');
 let id = [];
 let otherStories = []
-let askStoriesGenLink = 'https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty'
 let topStoriesUrl = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty'
+let askStoriesGenLink = 'https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty'
 
 // This function gets us the top 100 stories
 let top100list = async () => {
@@ -46,7 +46,7 @@ let top100Id = async () => {
         child.innerText = `${response.descendants} comments ${response.score} points submitted by ${response.by}`
         // console.log(response)
     }
-}
+};
 
 
 /* **************************************
