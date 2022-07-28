@@ -20,7 +20,7 @@ let top100list = async () => {
     // calling second function (top100Id) at the end of the first one (top100list). This allows top100Id to begin right after top100List
     top100Id();
 }
-top100list()
+top100list();
 // console.log(id);
 
 
@@ -59,7 +59,7 @@ let askLinks = async () => {
     let data = await res.json()
     otherStories = data;
     // console.log(otherStories)
-}
+};
 
 
 let askingLinks = async () => {
