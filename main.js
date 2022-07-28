@@ -85,8 +85,7 @@ let askingLinks = async () => {
         anchorTag.href = response.url;
         child.innerText = `${response.descendants} comments ${response.score} points submitted by ${response.by}`
     }
-
-}
+};
 
 // EVENT LISTENER FOR 'ASK STORIES' BUTTON ON TOP OF THE PAGE
 askSection.addEventListener('click', async () => {
