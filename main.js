@@ -63,7 +63,7 @@ let askLinks = async () => {
 
 
 let askingLinks = async () => {
-    console.log('this')
+    
     storiesList.innerHTML = ''
     child.innerHtml = ''
 
@@ -84,7 +84,6 @@ let askingLinks = async () => {
         anchorTag.innerText = response.title;
         anchorTag.href = response.url;
         child.innerText = `${response.descendants} comments ${response.score} points submitted by ${response.by}`
-
     }
 
 }
@@ -93,4 +92,4 @@ let askingLinks = async () => {
 askSection.addEventListener('click', async () => {
     await askLinks()
     await askingLinks();
-})
+});
