@@ -49,6 +49,11 @@ let top100Id = async () => {
 }
 
 
+/* **************************************
+***** CODE BELOW IS FOR ASK STORIES *****
+*************************************** / 
+
+
 let askLinks = async () => {
     let res = await fetch(askStoriesGenLink)
     let data = await res.json()
