@@ -4,10 +4,16 @@ let askSection = document.querySelector('#ask');
 let storiesList = document.querySelector('#story');
 let child = document.createElement('div');
 let anchorTag = document.createElement('a');
+let jobs = document.querySelector('#jobs');
+let polls = document.querySelector('#polls');
 let id = [];
 let otherStories = []
 let topStoriesUrl = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty'
 let askStoriesGenLink = 'https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty'
+let jobsUrl = 'https://hacker-news.firebaseio.com/v0/item/192327.json?print=pretty';
+let pollUrl = 'https://hacker-news.firebaseio.com/v0/item/126809.json?print=pretty';
+
+
 
 // This function gets us the top 100 stories
 let top100list = async () => {
@@ -31,7 +37,7 @@ let top100Id = async () => {
         let request = await fetch(`https://hacker-news.firebaseio.com/v0/item/${idNumber}.json?print=pretty`)
 
 
-        let response = await request.json();
+        let data = await request.json();
 
         let parentTitle = document.createElement('div');
         parentTitle.setAttribute('id', 'parentDiv');
@@ -41,17 +47,17 @@ let top100Id = async () => {
         parentTitle.appendChild(anchorTag);
         storiesList.appendChild(child);
 
-        anchorTag.innerText = response.title;
-        anchorTag.href = response.url;
-        child.innerText = `${response.descendants} comments ${response.score} points submitted by ${response.by}`
-        // console.log(response)
+        anchorTag.innerText = data.title;
+        anchorTag.href = data.url;
+        child.innerText = `${data.descendants} comments ${data.score} points submitted by ${data.by}`
+        // console.log(data)
     }
 };
 
 
 /* **************************************
-***** CODE BELOW IS FOR ASK STORIES *****
-*****************************************/ 
+ ***** CODE BELOW IS FOR ASK STORIES *****
+ *****************************************/
 
 
 let askLinks = async () => {
@@ -63,15 +69,15 @@ let askLinks = async () => {
 
 
 let askingLinks = async () => {
-    
+
     storiesList.innerHTML = ''
     child.innerHtml = ''
 
     for (let idNumber of otherStories) {
         let request = await fetch(`https://hacker-news.firebaseio.com/v0/item/${idNumber}.json?print=pretty`)
 
-        let response = await request.json();
-        // console.log(response)
+        let data = await request.json();
+        // console.log(data)
 
         let parentTitle = document.createElement('div');
         parentTitle.setAttribute('id', 'askingParentDiv');
@@ -81,9 +87,9 @@ let askingLinks = async () => {
         parentTitle.appendChild(anchorTag);
         storiesList.appendChild(child);
 
-        anchorTag.innerText = response.title;
-        anchorTag.href = response.url;
-        child.innerText = `${response.descendants} comments ${response.score} points submitted by ${response.by}`
+        anchorTag.innerText = data.title;
+        anchorTag.href = data.url;
+        child.innerText = `${data.descendants} comments ${data.score} points submitted by ${data.by}`
     }
 };
 
@@ -91,4 +97,67 @@ let askingLinks = async () => {
 askSection.addEventListener('click', async () => {
     await askLinks()
     await askingLinks();
+});
+
+
+// JOBS BUTTON
+jobs.addEventListener('click', async () => {
+    try {
+        let request = await fetch(jobsUrl);
+
+        if (request.status >= 200 && request.status <= 299) {
+            let data = await request.json();
+            console.log(data);
+            storiesList.innerHTML = ''
+            child.innerHtml = ''
+
+            let parentTitle = document.createElement('div');
+            parentTitle.setAttribute('id', 'ParentDiv');
+            child = document.createElement('div');
+            anchorTag = document.createElement('a');
+            storiesList.appendChild(parentTitle);
+            parentTitle.appendChild(anchorTag);
+            storiesList.appendChild(child);
+
+            anchorTag.innerText = data.title;
+            anchorTag.href = data.url;
+            child.innerText = `${data.descendants} comments ${data.score} points submitted by ${data.by}`
+        } else {
+            throw Error(`${request.status} | ${request.statusText}`); // .statusText specifies the error type
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+
+// Polls button section 
+polls.addEventListener('click', async () => {
+
+    try {
+        let request = await fetch(pollUrl);
+
+        if (request.status >= 200 && request.status <= 299) {
+            let data = await request.json();
+            console.log(data);
+            storiesList.innerHTML = ''
+            child.innerHtml = ''
+
+            let parentTitle = document.createElement('div');
+            parentTitle.setAttribute('id', 'ParentDiv');
+            child = document.createElement('div');
+            anchorTag = document.createElement('a');
+            storiesList.appendChild(parentTitle);
+            parentTitle.appendChild(anchorTag);
+            storiesList.appendChild(child);
+            anchorTag.innerText = data.title;
+            anchorTag.href = data.url;
+            child.innerText = `${data.descendants} comments ${data.score} points submitted by ${data.by}`
+        } else {
+            throw Error(`${request.status} | ${request.statusText}`); // .statusText specifies the error type
+        }
+    } catch (error) {
+        console.log(error);
+    }
 });
